@@ -1,0 +1,34 @@
+name: 'Github Actions Test'
+
+on:
+    issues:
+      types: [opened]
+    workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  Job1:
+    name: 'init'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Step 1
+        run: echo "Step 1 complete!"
+      - name: Step 2
+        run: echo "Step 2 complete!"
+  
+  Job2:
+    needs: Job1
+    name: 'cowsays'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cowsays
+        uses: mscoutermarsh/cowsays-action@master
+        with:
+          text: "Ready for prod–ship it!"
+          color: "magenta"
