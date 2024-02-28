@@ -11,7 +11,7 @@
     ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
     ARM_SUBSCRIPTION_ID: ${{secrets.ARM_SUBSCRIPTION_ID}}
     ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
-    RESOURCEGROUPNAME: ${{secrets.RESOURCEGROUPNAME}}
+    RESOURCEGROUPNAME: DevProductivityWorkshop
   
   permissions:
     contents: read
@@ -43,7 +43,7 @@
         with:
           client-id: ${{ secrets.ARM_CLIENT_ID }}
           tenant-id: ${{ secrets.ARM_TENANT_ID }}
-          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          subscription-id: 100ae94e-70f5-465f-9475-54158408b4b2
           # We also need to ensure that enable-AzPSSession is true. This is important for
           # using OIDC in Azure. If we were to pass in a client secret instead, we would not need
           # this setting enabled
@@ -54,9 +54,9 @@
         # https://github.com/azure/arm-deploy
         uses: azure/arm-deploy@v1
         with:
-          scope: /subscriptions/${{ secrets.ARM_SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.RESOURCEGROUPNAME }}
-          subscriptionId: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          resourceGroupName: ${{secrets.RESOURCEGROUPNAME}}
+          scope: /subscriptions/100ae94e-70f5-465f-9475-54158408b4b2/resourceGroups/${{ secrets.RESOURCEGROUPNAME }}
+          subscriptionId: 100ae94e-70f5-465f-9475-54158408b4b2
+          resourceGroupName: DevProductivityWorkshop
           template: ./InfrastructureAsCode/main.bicep
           # Use the environment variable called targetEnv
           parameters: ${{env.targetEnv}}
