@@ -9,11 +9,11 @@
   env:
     targetEnv: dev
     ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
-    ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
+    #ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
     ARM_SUBSCRIPTION_ID: ${{secrets.ARM_SUBSCRIPTION_ID}}
     ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
     RESOURCEGROUPNAME: ${{secrets.RESOURCEGROUPNAME}}
-    SUBSCRIPTION_SCOPE: ${{secrets.SUBSCRIPTION_SCOPE}}
+    
 
   # The overall workflow name will be Azure Bicep. This will show up in the
   # GitHub Action page.
@@ -51,7 +51,7 @@
         # https://github.com/azure/arm-deploy
         uses: azure/arm-deploy@v1
         with:
-          scope: /subscriptions/${{ secrets.SUBSCRIPTION_SCOPE }}/resourceGroups/${{ secrets.RESOURCEGROUPNAME }}
+          scope: /subscriptions/${{ secrets.ARM_SUBSCRIPTION_ID }}/resourceGroups/${{ secrets.RESOURCEGROUPNAME }}
           subscriptionId: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           resourceGroupName: ${{secrets.RESOURCEGROUPNAME}}
           template: ./InfrastructureAsCode/main.bicep
