@@ -35,6 +35,9 @@
       - name: Checkout
         uses: actions/checkout@main
         # Log into Azure using a federated credential. We have already set up the federation process in a prior step, so we need to pass in the following
+      - name: Install or update Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
       - name: Azure login
         uses: azure/login@v1
         with:
