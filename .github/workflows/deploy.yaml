@@ -14,7 +14,7 @@
     RESOURCEGROUPNAME: ${{ secrets.RESOURCEGROUPNAME }}
   
   permissions:
-    contents: read
+    contents: write
     id-token: write
     pages: write
 
