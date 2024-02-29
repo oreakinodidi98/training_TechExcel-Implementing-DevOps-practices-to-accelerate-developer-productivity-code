@@ -2,7 +2,6 @@ name: .NET CI
 
 env:
   registryName: omp5ybxocnuuumpnpreg.azurecr.io
-
   repositoryName: techboost/dotnetcoreapp
   dockerFolderPath: ./Application/src/RazorPagesTestSample
   tag: ${{github.run_number}}
@@ -81,7 +80,7 @@ jobs:
     needs: dockerBuildPush
     environment:
       name: dev
-      url: https://{your_prefix}-dev.azurewebsites.net/
+      url: https://omp5ybxocnuuu-dev.azurewebsites.net/
     
     steps:
       - name: 'Login via Azure CLI'
@@ -92,7 +91,7 @@ jobs:
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'omp5ybxocnuuu-dev'
-          images: omp5ybxocnuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+          images: omp5ybxocnuuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-test:
   
@@ -113,7 +112,7 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'omp5ybxocnuuu-test'
-        images: omp5ybxocnuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+        images: omp5ybxocnuuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-prod:
   
@@ -134,4 +133,4 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'omp5ybxocnuuu-prod'
-        images: omp5ybxocnuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+        images: omp5ybxocnuuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
