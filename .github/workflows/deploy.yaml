@@ -8,13 +8,9 @@
   # instead of needing to change this file to switch environments.
   env:
     targetEnv: dev
-    ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
-    ARM_SUBSCRIPTION_ID: ${{secrets.ARM_SUBSCRIPTION_ID}}
-    ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
-    RESOURCEGROUPNAME: ${{ secrets.RESOURCEGROUPNAME }}
-  
+
   permissions:
-    contents: write
+    contents: read
     id-token: write
     pages: write
 
@@ -53,4 +49,4 @@
           subscriptionId: ${{secrets.AZURE_SUBSCRIPTION_ID}}
           resourceGroupName: ${{ secrets.RESOURCEGROUPNAME }}
           template: ./InfrastructureAsCode/main.bicep
-          parameters: ${{env.targetEnv}}
+          parameters: environment=${{env.targetEnv}}
