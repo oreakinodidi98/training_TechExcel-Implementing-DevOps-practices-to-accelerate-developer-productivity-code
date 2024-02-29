@@ -1,7 +1,7 @@
 name: .NET CI
 
 env:
-  registryName: {your_registry_name}.azurecr.io
+  registryName: omp5ybxocnuumpnpreg.azurecr.io
   repositoryName: techboost/dotnetcoreapp
   dockerFolderPath: ./Application/src/RazorPagesTestSample
   tag: ${{github.run_number}}
@@ -90,8 +90,8 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: '{your_prefix}-dev'
-          images: {your_registry_name}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+          app-name: 'omp5ybxocnuuu-dev'
+          images: omp5ybxocnuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-test:
   
@@ -99,7 +99,7 @@ jobs:
     needs: deploy-to-dev
     environment:
       name: test
-      url: https://{your_prefix}-test.azurewebsites.net/
+      url: https://omp5ybxocnuuu-test.azurewebsites.net/
     
     steps:
     - uses: actions/checkout@v3
@@ -111,8 +111,8 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '{your_prefix}-test'
-        images: {your_registry_name}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+        app-name: 'omp5ybxocnuuu-test'
+        images: omp5ybxocnuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-prod:
   
@@ -120,7 +120,7 @@ jobs:
     needs: deploy-to-test
     environment:
       name: prod
-      url: https://{your_prefix}-prod.azurewebsites.net/
+      url: https://omp5ybxocnuuu-prod.azurewebsites.net/
     
     steps:
     - uses: actions/checkout@v3
@@ -132,5 +132,5 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '{your_prefix}-prod'
-        images: {your_registry_name}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+        app-name: 'omp5ybxocnuuu-prod'
+        images: omp5ybxocnuumpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
